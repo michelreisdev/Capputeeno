@@ -3,8 +3,12 @@
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     },
+    "cSpell.language": "en,es,en,pt,pt_BR",
     "cSpell.words": [
         "camelcase",
+        "Capputeeno",
+        "específico",
+        "saira",
         "Saira"
     ],
 }
