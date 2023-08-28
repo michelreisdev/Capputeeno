@@ -13,3 +13,10 @@ export const Logo = styled.a`
   font-size: 40px;
   line-height: 150%;
 `
+
+export const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+`
