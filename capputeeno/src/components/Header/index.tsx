@@ -1,24 +1,28 @@
 'use client'
 // eslint-disable-next-line camelcase
 import { Saira_Stencil_One } from 'next/font/google'
-import { TegHeader, Logo, Container } from './styles'
 import SearchBar from '../SearchBar'
 import CardController from '../CardController'
+import { useFilter } from '@/hooks/useFilter'
+import { Container, TegHeader, Logo } from './styles'
 
 const sairaStencil = Saira_Stencil_One({
   weight: ['400'],
   subsets: ['latin'],
 })
 
-interface HeaderProps {}
+export default function Header() {
+  const { setSearch, search } = useFilter()
 
-export default function Header(props: HeaderProps) {
   return (
     <TegHeader>
       <Logo className={sairaStencil.className}>Capputeeno</Logo>
-
       <Container>
-        <SearchBar placeholder="Procurando por algo específico?" />
+        <SearchBar
+          value={search}
+          onChange={setSearch}
+          placeholder="Procurando por algo específico?"
+        />
         <CardController />
       </Container>
     </TegHeader>

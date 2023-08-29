@@ -1,4 +1,4 @@
-import { SearchIconSvg } from './styles'
+import { SearchIconSvg } from '../SearchBar/styles'
 
 export function SearchIcon() {
   return (
@@ -14,16 +14,16 @@ export function SearchIcon() {
         cy="12.0586"
         r="7.06194"
         stroke="#737380"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M21.0034 21.0033L17.0518 17.0517"
         stroke="#737380"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </SearchIconSvg>
   )
