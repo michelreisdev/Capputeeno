@@ -1,6 +1,7 @@
 import { useProducts } from '@/hooks/useProducts'
 import ProductCard from '../ProductCard'
 import styled from 'styled-components'
+import { usePathname } from 'next/navigation'
 
 const ListContainer = styled.div`
   display: grid;
@@ -12,11 +13,14 @@ const ListContainer = styled.div`
 `
 
 export default function ProductList() {
+  const pathname = usePathname()
   const { data } = useProducts()
+
   return (
     <ListContainer>
       {data?.map((product) => (
         <ProductCard
+          keyProduct={product.id as unknown as string}
           key={product.id}
           title={product.name}
           price={product.price_in_cents}

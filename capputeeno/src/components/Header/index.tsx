@@ -20,7 +20,7 @@ export default function Header() {
       <Container>
         <SearchBar
           value={search}
-          onChange={setSearch}
+          handleChange={setSearch}
           placeholder="Procurando por algo específico?"
         />
         <CardController />

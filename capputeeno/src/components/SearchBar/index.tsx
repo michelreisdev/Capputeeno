@@ -4,14 +4,14 @@ import { SearchBarInput, SearchBarInputContainer } from './styles'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   value: string
-  onChange: (value: string) => void
+  handleChange: (value: string) => void
 }
 
 export default function SearchBar(props: InputProps) {
   return (
     <SearchBarInputContainer>
       <SearchBarInput
-        onChange={(event) => props.onChange(event.target.value)}
+        onChange={(event) => props.handleChange(event.target.value)}
         {...props}
       />
       <SearchIcon />

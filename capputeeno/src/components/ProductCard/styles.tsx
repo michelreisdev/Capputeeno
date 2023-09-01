@@ -5,6 +5,7 @@ export const Card = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  cursor: pointer;
 
   background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(10px);
