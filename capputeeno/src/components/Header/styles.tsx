@@ -10,8 +10,8 @@ export const TegHeader = styled.header`
 export const Logo = styled.a`
   color: var(--logo-color);
   font-weight: 400;
-  font-size: 20px;
-  line-height: 150%;
+  font-size: 40px;
+  line-height: 100%;
   text-decoration: none;
 
   @media (min-width: ${(props) => props.theme.tableBreakpoint}) {

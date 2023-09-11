@@ -1,6 +1,5 @@
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import BagBar from '../BagBar'
-import CarCount from '../CarCount'
 import { styled } from 'styled-components'
 
 const CartCount = styled.span`

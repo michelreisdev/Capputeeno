@@ -12,8 +12,8 @@ export default function ProductCard(props: ProductCardProps) {
   const price = formatPrice(props.price)
   const router = useRouter()
 
-  function pagProduct(key: number) {
-    router.push(`/product?product=${props.keyProduct}`)
+  function pagProduct(_key: string) {
+    router.push(`/product?id=${_key}`)
   }
 
   return (

@@ -1,5 +1,6 @@
 import { styled } from 'styled-components'
 import IconButtonBack from '../icons/button-back'
+import { useRouter } from 'next/navigation'
 
 const TagButtonBack = styled.button`
   display: flex;
@@ -19,10 +20,18 @@ const TagButtonBack = styled.button`
   font-weight: 500;
   line-height: 150%;
 `
+interface ButtonBackProps {
+  navigateTo: string
+}
+export default function ButtonBack({ navigateTo }: ButtonBackProps) {
+  const router = useRouter()
 
-export default function ButtonBack() {
+  const handleNavigateTo = () => {
+    router.push(navigateTo)
+  }
+
   return (
-    <TagButtonBack>
+    <TagButtonBack onClick={handleNavigateTo}>
       <IconButtonBack />
       Voltar
     </TagButtonBack>
