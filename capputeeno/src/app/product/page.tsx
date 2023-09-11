@@ -6,6 +6,7 @@ import { DefaultPageLayout } from '@/components/Layout'
 import { useProduct } from '@/hooks/useProduct'
 import { formatPrice } from '@/utils/format-price'
 import styled from 'styled-components'
+import { Product } from '@/types/product'
 
 const Container = styled.div`
   display: flex;
@@ -105,7 +106,7 @@ export default function Product({
                 <p>{data?.description}</p>
               </div>
             </ProductInfo>
-            <ButtonAddToCart />
+            <ButtonAddToCart product={data} />
           </div>
         </section>
       </Container>

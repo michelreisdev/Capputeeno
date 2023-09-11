@@ -19,11 +19,15 @@ const Container = styled.div`
 
 export default function CardController() {
   const { value } = useLocalStorage('cart-items', [])
+  const accumulator = 0
+  const sum = value.reduce(function (accumulator, object) {
+    return accumulator + object.quantity
+  }, 0)
 
   return (
     <Container>
       <BagBar />
-      {value.length && <CartCount>{value.length}</CartCount>}
+      <CartCount>{sum}</CartCount>
     </Container>
   )
 }

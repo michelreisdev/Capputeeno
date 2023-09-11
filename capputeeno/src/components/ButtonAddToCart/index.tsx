@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { BagIcon } from '../icons/BagIcon'
+import { Product } from '@/types/product'
 
 const TagButtonAddToCart = styled.button`
   display: flex;
@@ -20,9 +21,40 @@ const TagButtonAddToCart = styled.button`
   text-transform: uppercase;
 `
 
-export default function ButtonAddToCart() {
+interface ButtonAddToCartProps {
+  product?: Product
+}
+
+function handleAddToCar(props?: Product) {
+  const idItem = props?.id || []
+  const cartItems = localStorage.getItem('cart-items')
+  let cartItemsParsed = JSON.parse(cartItems || '[]')
+
+  const queryItem = cartItemsParsed.findIndex(
+    (item: Product) => item.id === idItem,
+  )
+
+  if (queryItem >= 0) {
+    cartItemsParsed[queryItem].quantity += 1
+  } else {
+    cartItemsParsed = [
+      ...cartItemsParsed,
+      {
+        id: props?.id,
+        name: props?.name,
+        price: props?.price_in_cents,
+        quantity: 1,
+      },
+    ]
+  }
+
+  localStorage.setItem('cart-items', JSON.stringify(cartItemsParsed))
+}
+
+export default function ButtonAddToCart(props: ButtonAddToCartProps) {
+  const { product } = props
   return (
-    <TagButtonAddToCart>
+    <TagButtonAddToCart onClick={() => handleAddToCar(product)}>
       <BagIcon buttonAddCard />
       Adicionar ao carrinho
     </TagButtonAddToCart>

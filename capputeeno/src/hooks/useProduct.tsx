@@ -14,6 +14,7 @@ const fetcher = (productId: string): AxiosPromise<ProductFetchResponse> => {
         category
         price_in_cents
         image_url
+        id
       }
     }
   `,
