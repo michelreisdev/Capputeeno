@@ -1,17 +1,17 @@
 import { InputHTMLAttributes } from 'react'
 import { SearchIcon } from '../icons/searchIcon'
-import { SearchBarInput, SearchBarInputContainer } from './styles'
+import { Input, SearchBarInputContainer } from './styles'
+import { useFilter } from '@/hooks/useFilter'
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  value: string
-  handleChange: (value: string) => void
-}
+type InputProps = InputHTMLAttributes<HTMLInputElement>
 
 export default function SearchBar(props: InputProps) {
+  const { setSearch, search } = useFilter()
   return (
     <SearchBarInputContainer>
-      <SearchBarInput
-        onChange={(event) => props.handleChange(event.target.value)}
+      <Input
+        value={search}
+        onChange={(event) => setSearch(event.target.value)}
         {...props}
       />
       <SearchIcon />

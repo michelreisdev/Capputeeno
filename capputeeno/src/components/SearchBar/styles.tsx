@@ -1,6 +1,6 @@
 import { styled } from 'styled-components'
 
-export const SearchBarInput = styled.input`
+export const Input = styled.input`
   width: 352px;
   border-radius: 8px;
   padding: 10px 16px;
