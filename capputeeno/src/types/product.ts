@@ -5,6 +5,8 @@ export interface Product {
   image_url: string
   category: string
   description: string
+  quantity: number
+  price: number
 }
 
 export interface ProductFetchResponse {

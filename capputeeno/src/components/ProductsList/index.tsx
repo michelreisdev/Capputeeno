@@ -13,7 +13,6 @@ const ListContainer = styled.div`
 `
 
 export default function ProductList() {
-  const pathname = usePathname()
   const { data } = useProducts()
 
   return (

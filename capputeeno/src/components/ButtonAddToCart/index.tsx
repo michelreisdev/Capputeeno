@@ -42,8 +42,11 @@ function handleAddToCar(props?: Product) {
       {
         id: props?.id,
         name: props?.name,
-        price: props?.price_in_cents,
+        price_in_cents: props?.price_in_cents,
         quantity: 1,
+        image_url: props?.image_url,
+        category: props?.category,
+        description: props?.description,
       },
     ]
   }
