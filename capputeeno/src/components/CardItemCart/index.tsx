@@ -60,7 +60,7 @@ function addItemCart(item: Product) {
   const cartItems = localStorage.getItem('cart-items')
   const cartItemsParsed = JSON.parse(cartItems || '[]')
   const indexProduct = cartItemsParsed.findIndex(
-    (items) => items.id === item.id,
+    (items: { id: number }) => items.id === item.id,
   )
   cartItemsParsed[indexProduct].quantity = item.quantity
 
