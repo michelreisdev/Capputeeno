@@ -7,6 +7,7 @@ import { useProduct } from '@/hooks/useProduct'
 import { formatPrice } from '@/utils/format-price'
 import styled from 'styled-components'
 import { Product } from '@/types/product'
+import TagImage from '@/components/Image'
 
 const Container = styled.div`
   display: flex;
@@ -91,7 +92,12 @@ export default function Product({
       <Container>
         <ButtonBack navigateTo="/" />
         <section>
-          <img src={data?.image_url} />
+          <TagImage
+            src={data?.image_url ?? ''}
+            alt="Imagem do produto"
+            width={640}
+            height={580}
+          />
           <div>
             <ProductInfo>
               <span>{data?.category}</span>

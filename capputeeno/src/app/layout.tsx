@@ -2,7 +2,6 @@ import Header from '@/components/Header'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Saira } from 'next/font/google'
-import { FilterContextProvider } from '@/contexts/filter-context'
 import { DefaultProviders } from '@/components/DefaultProviders/default-providers'
 
 const saira = Saira({
@@ -24,10 +23,8 @@ export default function RootLayout({
     <html lang="pt">
       <body className={saira.className}>
         <DefaultProviders>
-          <FilterContextProvider>
-            <Header />
-            {children}
-          </FilterContextProvider>
+          <Header />
+          {children}
         </DefaultProviders>
       </body>
     </html>

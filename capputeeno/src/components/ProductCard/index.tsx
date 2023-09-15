@@ -1,6 +1,7 @@
 import { formatPrice } from '@/utils/format-price'
 import { Card } from './styles'
 import { useRouter } from 'next/navigation'
+import TagImage from '../Image'
 interface ProductCardProps {
   image: string
   title: string
@@ -18,7 +19,12 @@ export default function ProductCard(props: ProductCardProps) {
 
   return (
     <Card onClick={() => pagProduct(props.keyProduct)}>
-      <img src={props.image} />
+      <TagImage
+        src={props.image}
+        width={256}
+        height={300}
+        alt="Imagem Produto"
+      />
       <div>
         <h3>{props.title}</h3>
         <div></div>

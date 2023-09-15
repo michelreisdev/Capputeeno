@@ -8,6 +8,9 @@ export interface Product {
   quantity: number
   price: number
 }
+export interface ProductInCart extends Product {
+  quantity: number
+}
 
 export interface ProductFetchResponse {
   data: {

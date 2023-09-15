@@ -4,7 +4,8 @@ export const TegHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 160px;
+  padding-left: 160px;
+  padding-right: 160px;
 `
 
 export const Logo = styled.a`
@@ -13,6 +14,11 @@ export const Logo = styled.a`
   font-size: 40px;
   line-height: 100%;
   text-decoration: none;
+  width: 544px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 
   @media (min-width: ${(props) => props.theme.tableBreakpoint}) {
     font-size: 24px;

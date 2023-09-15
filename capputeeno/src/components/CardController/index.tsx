@@ -1,6 +1,7 @@
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import BagBar from '../BagBar'
 import { styled } from 'styled-components'
+import { useRouter } from 'next/navigation'
 
 const CartCount = styled.span`
   width: 17px;
@@ -15,6 +16,7 @@ const CartCount = styled.span`
 
 const Container = styled.div`
   position: relative;
+  cursor: pointer;
 `
 
 export default function CardController() {
@@ -23,9 +25,13 @@ export default function CardController() {
   const sum = value.reduce(function (accumulator, object) {
     return accumulator + object.quantity
   }, 0)
+  const router = useRouter()
 
+  const handleNavigateTo = () => {
+    router.push('/cart')
+  }
   return (
-    <Container>
+    <Container onClick={handleNavigateTo}>
       <BagBar />
       <CartCount>{sum}</CartCount>
     </Container>

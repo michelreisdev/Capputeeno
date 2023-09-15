@@ -15,7 +15,7 @@ export default function OrderSummaryCardItem({
   return (
     <div>
       {total && <Separator></Separator>}
-      <OrderDescription>
+      <OrderDescription $total={total}>
         <Title $total={total}>{title}</Title>
         <Price $total={total}>{formatPrice(price)}</Price>
       </OrderDescription>

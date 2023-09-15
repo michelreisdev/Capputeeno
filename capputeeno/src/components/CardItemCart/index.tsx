@@ -9,20 +9,18 @@ import {
   SelectQuantity,
   PriceItem,
 } from './styles'
-import { ChangeEvent, useState } from 'react'
 import { Product } from '@/types/product'
-import { useLocalStorage } from '@/hooks/useLocalStorage'
 
 interface CardItemCartProps {
   product: Product
+  onchanch: (id: string, quantity: number) => void
+  qgt: number
 }
-export default function CardItemCart({ product }: CardItemCartProps) {
-  const [value, setValue] = useState(product.quantity)
-  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    product.quantity = Number(e.target.value)
-    setValue(Number(e.target.value))
-    addItemCart(product)
-  }
+export default function CardItemCart({
+  product,
+  qgt,
+  onchanch,
+}: CardItemCartProps) {
   return (
     <Container>
       <TagImage
@@ -40,7 +38,10 @@ export default function CardItemCart({ product }: CardItemCartProps) {
         </CardItemTop>
         <p>{product.description}</p>
         <CardItemBottom>
-          <SelectQuantity value={value} onChange={handleChange}>
+          <SelectQuantity
+            value={qgt}
+            onChange={(e) => onchanch(product.id, e.target.value)}
+          >
             <option value={1}>1</option>
             <option value={2}>2</option>
             <option value={3}>3</option>

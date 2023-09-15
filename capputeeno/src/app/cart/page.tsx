@@ -5,8 +5,10 @@ import CardItemCart from '@/components/CardItemCart'
 import { DefaultPageLayout } from '@/components/Layout'
 import OrderSummaryCardItem from '@/components/OrderSummaryCardItem'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
-import { Product } from '@/types/product'
+import { ProductFetchResponse, ProductInCart } from '@/types/product'
 import { sumTotalCart } from '@/utils/cart-sum'
+import { formatPrice } from '@/utils/format-price'
+import { ChangeEvent, useState } from 'react'
 import styled from 'styled-components'
 
 export const Container = styled.div`
@@ -66,8 +68,25 @@ export const OrderSummaryCard = styled.div`
 `
 
 export default function Cart() {
-  const { value } = useLocalStorage('cart-items', [])
-  const priceTotal = sumTotalCart(value)
+  const { value, updateLocalStorage } = useLocalStorage<ProductInCart[]>(
+    'cart-items',
+    [],
+  )
+  const calculateTotal = (value: ProductInCart[]) => {
+    return value.reduce(
+      (sum, item) => (sum += item.price_in_cents * item.quantity),
+      0,
+    )
+  }
+  const cartTotal = formatPrice(calculateTotal(value))
+
+  const handleUpdateQuantity = (id: string, quantity: number) => {
+    const newValue = value.map((item) => {
+      if (item.id !== id) return item
+      return { ...item, quantity }
+    })
+    updateLocalStorage(newValue)
+  }
 
   return (
     <DefaultPageLayout>
@@ -76,10 +95,15 @@ export default function Cart() {
           <ButtonBack navigateTo="/" />
           <p>SEU CARRINHO</p>
           <p>
-            Total ({value.length} produtos) <span>{priceTotal}</span>
+            Total ({value.length} produtos) <span>{cartTotal}</span>
           </p>
           {value.map((item) => (
-            <CardItemCart key={item.id} product={item} />
+            <CardItemCart
+              key={item.id}
+              product={item}
+              onchanch={handleUpdateQuantity}
+              qgt={item.quantity}
+            />
           ))}
         </CardItems>
         <OrderSummaryCard>

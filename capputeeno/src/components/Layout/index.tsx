@@ -7,6 +7,10 @@ export const DefaultPageLayout = styled.div`
   background-color: var(--bg-primary);
 
   @media (min-width: ${(props) => props.theme.desktopBreakpoint}) {
-    padding: 34px 160px;
+    padding-top: 34px;
+    width: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `

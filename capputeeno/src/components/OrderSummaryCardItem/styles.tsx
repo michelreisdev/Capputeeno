@@ -4,11 +4,12 @@ interface TotalProps {
   $total?: boolean
 }
 
-export const OrderDescription = styled.div`
+export const OrderDescription = styled.div<TotalProps>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 304px;
+  padding-bottom: ${(p) => (p.$total ? '0' : '8px')};
 `
 export const Title = styled.p<TotalProps>`
   font-size: 16px;
@@ -34,6 +35,6 @@ export const Separator = styled.div`
   width: 304px;
   border: 1px;
   angle: 0 deg;
-  margin-top: 24px;
+  margin-top: 16px;
   margin-bottom: 8px;
 `

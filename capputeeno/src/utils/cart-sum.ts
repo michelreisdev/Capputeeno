@@ -8,6 +8,7 @@ interface Product {
 type Products = Product[]
 
 export function sumTotalCart(products: Products): string {
+  console.log(products)
   let sum = 0
   for (let i = 0; i < products.length; i++) {
     sum += products[i].price_in_cents * products[i].quantity
