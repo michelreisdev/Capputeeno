@@ -3,7 +3,7 @@
 import { Saira_Stencil_One } from 'next/font/google'
 import SearchBar from '../SearchBar'
 import CardController from '../CardController'
-import { Container, TegHeader, Logo } from './styles'
+import { Container, TegHeader, Logo, SearchBarContainer } from './styles'
 
 const sairaStencil = Saira_Stencil_One({
   weight: ['400'],
@@ -13,10 +13,12 @@ const sairaStencil = Saira_Stencil_One({
 export default function Header() {
   return (
     <TegHeader>
-      <Logo className={sairaStencil.className}>Capputeeno</Logo>
       <Container>
-        <SearchBar placeholder="Procurando por algo específico?" />
-        <CardController />
+        <Logo className={sairaStencil.className}>Capputeeno</Logo>
+        <SearchBarContainer>
+          <SearchBar placeholder="Procurando por algo específico?" />
+          <CardController />
+        </SearchBarContainer>
       </Container>
     </TegHeader>
   )

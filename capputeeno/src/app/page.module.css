@@ -4,6 +4,6 @@
   align-items: center;
   min-height: 100vh;
   background-color: var(--bg-primary);
-  width: 100%;
+  min-width: 1130px;
   margin: auto 160px;
 }

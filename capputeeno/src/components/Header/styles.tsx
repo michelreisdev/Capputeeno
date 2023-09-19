@@ -3,9 +3,7 @@ import styled from 'styled-components'
 export const TegHeader = styled.header`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding-left: 160px;
-  padding-right: 160px;
+  justify-content: center;
 `
 
 export const Logo = styled.a`
@@ -32,6 +30,14 @@ export const Logo = styled.a`
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-width: 1130px;
+  background-color: white;
+`
+
+export const SearchBarContainer = styled.div`
+  display: flex;
+  align-items: center;
   gap: 24px;
 `

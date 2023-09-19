@@ -7,7 +7,7 @@ export const DefaultPageLayout = styled.div`
   background-color: var(--bg-primary);
 
   @media (min-width: ${(props) => props.theme.desktopBreakpoint}) {
-    padding-top: 34px;
+    padding-top: 25px;
     width: inherit;
     display: flex;
     align-items: flex-start;

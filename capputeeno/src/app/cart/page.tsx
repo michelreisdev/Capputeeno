@@ -55,7 +55,9 @@ export const CardItems = styled.div`
 export const OrderSummaryCard = styled.div`
   width: 352px;
   height: 700px;
-  padding: 0 24px 0 24px;
+  padding: 0 24px 24px 24px;
+  display: flex;
+  flex-direction: column;
   background: var(--shapes-01);
   > p {
     font-size: 20px;
@@ -64,8 +66,28 @@ export const OrderSummaryCard = styled.div`
     letter-spacing: 0em;
     text-align: left;
     color: var(--text-dark-01);
-    margin: 16px auto 29px;
+    margin: 16px auto 29px 0;
   }
+`
+
+export const OrderSummaryCardFooter = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex-grow: 1;
+  flex-direction: column;
+  gap: 12px;
+`
+export const OrderSummaryCardFooterItems = styled.div`
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #737380;
+  cursor: pointer;
+  text-decoration: underline;
+  text-transform: uppercase;
 `
 
 export default function Cart() {
@@ -127,6 +149,18 @@ export default function Cart() {
             total={true}
           />
           <BtnPurchase />
+          <OrderSummaryCardFooter>
+            <OrderSummaryCardFooterItems>Ajuda</OrderSummaryCardFooterItems>
+            <OrderSummaryCardFooterItems>
+              reembolsos
+            </OrderSummaryCardFooterItems>
+            <OrderSummaryCardFooterItems>
+              entregas e frete
+            </OrderSummaryCardFooterItems>
+            <OrderSummaryCardFooterItems>
+              trocas e devoluções
+            </OrderSummaryCardFooterItems>
+          </OrderSummaryCardFooter>
         </OrderSummaryCard>
       </Container>
     </DefaultPageLayout>

@@ -12,8 +12,6 @@ import TagImage from '@/components/Image'
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding-left: 160px;
-  padding-top: 25px;
   section {
     display: flex;
     align-items: center;
