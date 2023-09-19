@@ -14,11 +14,11 @@ import { Product } from '@/types/product'
 interface CardItemCartProps {
   product: Product
   onchanch: (id: string, quantity: number) => void
-  qgt: number
+  quantity: number
 }
 export default function CardItemCart({
   product,
-  qgt,
+  quantity,
   onchanch,
 }: CardItemCartProps) {
   return (
@@ -39,7 +39,7 @@ export default function CardItemCart({
         <p>{product.description}</p>
         <CardItemBottom>
           <SelectQuantity
-            value={qgt}
+            value={quantity}
             onChange={(e) => onchanch(product.id, e.target.value)}
           >
             <option value={1}>1</option>

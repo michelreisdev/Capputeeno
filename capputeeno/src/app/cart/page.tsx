@@ -78,7 +78,9 @@ export default function Cart() {
       0,
     )
   }
-  const cartTotal = formatPrice(calculateTotal(value))
+
+  const cartTotalInCents = calculateTotal(value)
+  const cartTotal = formatPrice(cartTotalInCents)
 
   const handleUpdateQuantity = (id: string, quantity: number) => {
     const newValue = value.map((item) => {
@@ -102,15 +104,22 @@ export default function Cart() {
               key={item.id}
               product={item}
               onchanch={handleUpdateQuantity}
-              qgt={item.quantity}
+              quantity={item.quantity}
             />
           ))}
         </CardItems>
         <OrderSummaryCard>
           <p>RESUMO DO PEDIDO</p>
-          <OrderSummaryCardItem title="Subtotal do produto" price={16100} />
+          <OrderSummaryCardItem
+            title="Subtotal do produto"
+            price={cartTotalInCents}
+          />
           <OrderSummaryCardItem title="Entrega" price={4000} />
-          <OrderSummaryCardItem title="Total" price={20100} total={true} />
+          <OrderSummaryCardItem
+            title="Total"
+            price={cartTotalInCents + 4000}
+            total={true}
+          />
         </OrderSummaryCard>
       </Container>
     </DefaultPageLayout>

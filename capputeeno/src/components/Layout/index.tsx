@@ -10,7 +10,7 @@ export const DefaultPageLayout = styled.div`
     padding-top: 34px;
     width: inherit;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
   }
 `
