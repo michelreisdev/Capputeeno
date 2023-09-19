@@ -1,5 +1,6 @@
 'use client'
 
+import BtnPurchase from '@/components/BtnPurchase'
 import ButtonBack from '@/components/ButtonBack'
 import CardItemCart from '@/components/CardItemCart'
 import { DefaultPageLayout } from '@/components/Layout'
@@ -54,7 +55,7 @@ export const CardItems = styled.div`
 export const OrderSummaryCard = styled.div`
   width: 352px;
   height: 700px;
-  padding-left: 24px;
+  padding: 0 24px 0 24px;
   background: var(--shapes-01);
   > p {
     font-size: 20px;
@@ -89,6 +90,10 @@ export default function Cart() {
     })
     updateLocalStorage(newValue)
   }
+  const handleRemoveProduct = (id: string) => {
+    const newValue = value.filter((item) => item.id !== id)
+    updateLocalStorage(newValue)
+  }
 
   return (
     <DefaultPageLayout>
@@ -104,6 +109,7 @@ export default function Cart() {
               key={item.id}
               product={item}
               onchanch={handleUpdateQuantity}
+              onRemove={handleRemoveProduct}
               quantity={item.quantity}
             />
           ))}
@@ -120,6 +126,7 @@ export default function Cart() {
             price={cartTotalInCents + 4000}
             total={true}
           />
+          <BtnPurchase />
         </OrderSummaryCard>
       </Container>
     </DefaultPageLayout>

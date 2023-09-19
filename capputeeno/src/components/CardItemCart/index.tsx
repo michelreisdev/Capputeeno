@@ -15,11 +15,13 @@ interface CardItemCartProps {
   product: Product
   onchanch: (id: string, quantity: number) => void
   quantity: number
+  onRemove: (id: string) => void
 }
 export default function CardItemCart({
   product,
   quantity,
   onchanch,
+  onRemove,
 }: CardItemCartProps) {
   return (
     <Container>
@@ -32,7 +34,7 @@ export default function CardItemCart({
       <InfoProduct>
         <CardItemTop>
           <p>{product.name}</p>
-          <div>
+          <div onClick={(e) => onRemove(product.id)}>
             <DeleteItem />
           </div>
         </CardItemTop>
