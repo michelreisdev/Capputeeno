@@ -8,19 +8,19 @@ export default function Pagination() {
   const handlePage = (value: number) => {
     setPage(value)
   }
-  const pag = sumTotalProduct / 10
+  const totalPag = sumTotalProduct / 10
 
   const handleNextPage = () => {
     const pages = page + 1
-    if (pages === pag) return
-    if (page < pag) return setPage(pages)
+    if (pages === totalPag) return
+    if (page < totalPag) return setPage(pages)
   }
   const handlePreviousPage = () => {
     if (page > 0) return setPage(page - 1)
   }
 
   const listaDeItens = []
-  for (let i = 0; i < pag; i++) {
+  for (let i = 0; i < totalPag; i++) {
     listaDeItens.push(
       <PaginationContainer
         key={i}
