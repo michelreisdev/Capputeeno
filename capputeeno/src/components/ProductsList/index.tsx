@@ -1,7 +1,6 @@
 import { useProducts } from '@/hooks/useProducts'
 import ProductCard from '../ProductCard'
 import styled from 'styled-components'
-import { usePathname } from 'next/navigation'
 
 const ListContainer = styled.div`
   display: grid;

@@ -27,8 +27,10 @@ const FilterItem = styled.li<FilterItemProps>`
 `
 
 export default function FilterBarByType() {
+  const { setPage } = useFilter()
   const { type, setType } = useFilter()
   const handleChangeType = (value: FilterType) => {
+    setPage(0)
     setType(value)
   }
   return (

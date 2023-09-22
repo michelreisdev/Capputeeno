@@ -12,21 +12,23 @@ const fetcher = (query: string): AxiosPromise<ProductsFetchResponse> => {
 }
 
 export function useProducts() {
-  const { type, priority, search } = useFilter()
+  const { type, priority, search, page } = useFilter()
   const searchDeferred = useDeferredValue(search)
-  const query = mountQuery(type, priority)
+  const query = mountQuery(type, priority, page)
+
   const { data } = useQuery({
     queryFn: () => fetcher(query),
-    queryKey: ['products', type, priority],
+    queryKey: ['products', type, priority, page],
     staleTime: 1000 * 60 * 1,
   })
 
   const products = data?.data?.data?.allProducts
+  const sumProducts = data?.data?.data?._allProductsMeta.count ?? 0
   const filteredProducts = products?.filter((product) =>
     product.name.toLowerCase().includes(searchDeferred.toLowerCase()),
   )
-
   return {
     data: filteredProducts,
+    sumTotalProduct: sumProducts,
   }
 }
