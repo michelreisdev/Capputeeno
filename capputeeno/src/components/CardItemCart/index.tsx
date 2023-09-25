@@ -13,14 +13,14 @@ import { Product } from '@/types/product'
 
 interface CardItemCartProps {
   product: Product
-  onchanch: (id: string, quantity: number) => void
+  onChange: (id: string, quantity: number) => void
   quantity: number
   onRemove: (id: string) => void
 }
 export default function CardItemCart({
   product,
   quantity,
-  onchanch,
+  onChange,
   onRemove,
 }: CardItemCartProps) {
   return (
@@ -34,7 +34,7 @@ export default function CardItemCart({
       <InfoProduct>
         <CardItemTop>
           <p>{product.name}</p>
-          <div onClick={(e) => onRemove(product.id)}>
+          <div onClick={() => onRemove(product.id)}>
             <DeleteItem />
           </div>
         </CardItemTop>
@@ -42,7 +42,7 @@ export default function CardItemCart({
         <CardItemBottom>
           <SelectQuantity
             value={quantity}
-            onChange={(e) => onchanch(product.id, e.target.value)}
+            onChange={(e) => onChange(product.id, parseInt(e.target.value))}
           >
             <option value={1}>1</option>
             <option value={2}>2</option>
@@ -57,15 +57,4 @@ export default function CardItemCart({
       </InfoProduct>
     </Container>
   )
-}
-
-function addItemCart(item: Product) {
-  const cartItems = localStorage.getItem('cart-items')
-  const cartItemsParsed = JSON.parse(cartItems || '[]')
-  const indexProduct = cartItemsParsed.findIndex(
-    (items: { id: number }) => items.id === item.id,
-  )
-  cartItemsParsed[indexProduct].quantity = item.quantity
-
-  localStorage.setItem('cart-items', JSON.stringify(cartItemsParsed))
 }

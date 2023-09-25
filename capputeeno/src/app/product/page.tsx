@@ -1,101 +1,35 @@
 'use client'
-
+import React from 'react'
 import ButtonAddToCart from '@/components/ButtonAddToCart'
 import ButtonBack from '@/components/ButtonBack'
 import { DefaultPageLayout } from '@/components/Layout'
 import { useProduct } from '@/hooks/useProduct'
 import { formatPrice } from '@/utils/format-price'
-import styled from 'styled-components'
-import { Product } from '@/types/product'
 import TagImage from '@/components/Image'
+import { Container, ProductInfo } from './styles'
+import { Product } from '@/types/product'
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  section {
-    display: flex;
-    align-items: center;
-    gap: 32px;
-    > div {
-      height: 580px;
-      width: 448px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      span:first-child {
-      }
-    }
-    image {
-      width: 640px;
-      height: 580px;
-    }
-  }
-`
-const ProductInfo = styled.div`
-  h2 {
-    font-size: 32px;
-    font-weight: 300;
-    line-height: 48px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: var(--text-dark);
-  }
-  span:nth-of-type(2) {
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 30px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: var(--shapes-dark);
-  }
-  p {
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 18px;
-    letter-spacing: 0em;
-    text-align: left;
-    margin-top: 24px;
-  }
-  > div {
-    h3 {
-      font-size: 16px;
-      font-weight: 500;
-      line-height: 24px;
-      letter-spacing: 0em;
-      text-align: left;
-      color: var(--text-dark);
-      margin-top: 58px;
-    }
-    p {
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 21px;
-      letter-spacing: 0em;
-      text-align: left;
-      color: var(--text-dark-2);
-      margin-top: 8px;
-    }
-  }
-`
-
-export default function Product({
-  searchParams,
-}: {
+interface ProductProps {
   searchParams: { id: string }
-}) {
+}
+
+const ProductPage: React.FC<ProductProps> = ({ searchParams }) => {
   const { data } = useProduct(searchParams.id)
   const price = formatPrice(data?.price_in_cents ?? 0)
+
   return (
     <DefaultPageLayout>
       <Container>
         <ButtonBack navigateTo="/" />
         <section>
-          <TagImage
-            src={data?.image_url ?? ''}
-            alt="Imagem do produto"
-            width={640}
-            height={580}
-          />
+          {data?.image_url && (
+            <TagImage
+              src={data.image_url ?? ''}
+              alt="Imagem do produto"
+              width={640}
+              height={580}
+            />
+          )}
           <div>
             <ProductInfo>
               <span>{data?.category}</span>
@@ -110,10 +44,12 @@ export default function Product({
                 <p>{data?.description}</p>
               </div>
             </ProductInfo>
-            <ButtonAddToCart product={data} />
+            <ButtonAddToCart product={data as Product} />{' '}
           </div>
         </section>
       </Container>
     </DefaultPageLayout>
   )
 }
+
+export default ProductPage
