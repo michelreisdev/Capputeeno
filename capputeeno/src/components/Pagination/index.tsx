@@ -1,46 +1,60 @@
+import React, { useState, useEffect } from 'react'
 import { useFilter } from '@/hooks/useFilter'
-import { Container, PaginationContainer } from './styles'
 import { useProducts } from '@/hooks/useProducts'
+import { Container, PaginationContainer } from './styles'
 
-export default function Pagination() {
+const Pagination: React.FC = () => {
   const { page, setPage } = useFilter()
   const { sumTotalProduct } = useProducts()
-  const handlePage = (value: number) => {
-    setPage(value)
-  }
-  const totalPag = sumTotalProduct / 10
+  const totalPag = Math.ceil(sumTotalProduct / 10)
+  const [pageFinal, setPageFinal] = useState(false)
+  const [pageStart, setPageStart] = useState(true)
 
-  const handleNextPage = () => {
-    const pages = page + 1
-    if (pages === totalPag) return
-    if (page < totalPag) return setPage(pages)
-  }
-  const handlePreviousPage = () => {
-    if (page > 0) return setPage(page - 1)
+  useEffect(() => {
+    setPageStart(page === 0)
+    setPageFinal(page + 1 === totalPag)
+  }, [page, totalPag])
+
+  const handlePaginationClick = (newPage: number) => {
+    setPage(newPage)
   }
 
-  const listaDeItens = []
-  for (let i = 0; i < totalPag; i++) {
-    listaDeItens.push(
-      <PaginationContainer
-        key={i}
-        cont={i}
-        pag={page}
-        onClick={() => handlePage(i)}
-      >
-        {i + 1}
-      </PaginationContainer>,
-    )
+  const generatePaginationItems = () => {
+    const items = []
+    for (let i = 0; i < totalPag; i++) {
+      items.push(
+        <PaginationContainer
+          key={i}
+          cont={i}
+          pag={page}
+          onClick={() => handlePaginationClick(i)}
+        >
+          {i + 1}
+        </PaginationContainer>,
+      )
+    }
+    return items
   }
+
   return (
     <Container>
-      {listaDeItens}
-      <PaginationContainer onClick={handlePreviousPage} arrow={'left'}>
+      {generatePaginationItems()}
+      <PaginationContainer
+        disabled={pageStart}
+        onClick={() => handlePaginationClick(page - 1)}
+        arrow="left"
+      >
         {'<'}
       </PaginationContainer>
-      <PaginationContainer onClick={handleNextPage} arrow={'right'}>
+      <PaginationContainer
+        disabled={pageFinal}
+        onClick={() => handlePaginationClick(page + 1)}
+        arrow="right"
+      >
         {'>'}
       </PaginationContainer>
     </Container>
   )
 }
+
+export default Pagination
