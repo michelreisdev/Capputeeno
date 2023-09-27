@@ -23,6 +23,13 @@ export default function CardItemCart({
   onChange,
   onRemove,
 }: CardItemCartProps) {
+  function handleQuantityChange(event: React.ChangeEvent<HTMLSelectElement>) {
+    const newQuantity = parseInt(event.target.value)
+    onChange(product.id, newQuantity)
+  }
+  function handleRemove() {
+    onRemove(product.id)
+  }
   return (
     <Container>
       <TagImage
@@ -34,21 +41,18 @@ export default function CardItemCart({
       <InfoProduct>
         <CardItemTop>
           <p>{product.name}</p>
-          <div onClick={() => onRemove(product.id)}>
+          <div onClick={handleRemove}>
             <DeleteItem />
           </div>
         </CardItemTop>
         <p>{product.description}</p>
         <CardItemBottom>
-          <SelectQuantity
-            value={quantity}
-            onChange={(e) => onChange(product.id, parseInt(e.target.value))}
-          >
-            <option value={1}>1</option>
-            <option value={2}>2</option>
-            <option value={3}>3</option>
-            <option value={4}>4</option>
-            <option value={5}>5</option>
+          <SelectQuantity value={quantity} onChange={handleQuantityChange}>
+            {Array.from({ length: 5 }, (_, i) => i + 1).map((value) => (
+              <option key={value} value={value}>
+                {value}
+              </option>
+            ))}
           </SelectQuantity>
           <PriceItem>
             {formatPrice(product.price_in_cents * product.quantity)}

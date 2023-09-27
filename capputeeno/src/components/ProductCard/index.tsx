@@ -1,7 +1,8 @@
+'use client'
 import { formatPrice } from '@/utils/format-price'
 import { Card } from './styles'
-import { useRouter } from 'next/navigation'
 import TagImage from '../Image'
+import { useRouter } from 'next/navigation'
 interface ProductCardProps {
   image: string
   title: string
@@ -13,12 +14,12 @@ export default function ProductCard(props: ProductCardProps) {
   const price = formatPrice(props.price)
   const router = useRouter()
 
-  function pagProduct(_key: string) {
-    router.push(`/product?id=${_key}`)
+  function pagProduct(key: string): void {
+    router.push(`/product?id=${key}`)
   }
 
   return (
-    <Card onClick={() => pagProduct(props.keyProduct)}>
+    <Card onClick={() => pagProduct(props.keyProduct)} role="button">
       <TagImage
         src={props.image}
         width={256}

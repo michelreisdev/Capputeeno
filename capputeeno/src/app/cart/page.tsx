@@ -33,15 +33,11 @@ const Cart: React.FC = () => {
     )
   }
 
-  const cartTotalInCents = calculateTotal(value)
-  const cartTotal = formatPrice(cartTotalInCents)
-
-  const handleUpdateQuantity = (id: string, quantity: number) => {
-    const newValue = value.map((item) => {
-      if (item.id !== id) return item
-      return { ...item, quantity }
-    })
-    updateLocalStorage(newValue)
+  function handleUpdateQuantity(id: string, quantity: number) {
+    const updatedItems = value.map((item) =>
+      item.id === id ? { ...item, quantity } : item,
+    )
+    updateLocalStorage(updatedItems)
   }
 
   const handleRemoveProduct = (id: string) => {
@@ -56,7 +52,8 @@ const Cart: React.FC = () => {
           <ButtonBack navigateTo="/" />
           <p>SEU CARRINHO</p>
           <p>
-            Total ({value.length} produtos) <span>{cartTotal}</span>
+            Total ({value.length} produtos){' '}
+            <span>{formatPrice(calculateTotal(value))}</span>
           </p>
           {value.length ? (
             value.map((item) => (
@@ -76,12 +73,12 @@ const Cart: React.FC = () => {
           <p>RESUMO DO PEDIDO</p>
           <OrderSummaryCardItem
             title="Subtotal do produto"
-            price={cartTotalInCents}
+            price={calculateTotal(value)}
           />
           <OrderSummaryCardItem title="Entrega" price={priceShipping} />
           <OrderSummaryCardItem
             title="Total"
-            price={cartTotalInCents + priceShipping}
+            price={calculateTotal(value) + priceShipping}
             total={true}
           />
           <BtnPurchase />

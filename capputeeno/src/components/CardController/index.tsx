@@ -1,7 +1,7 @@
-import BagBar from '../BagBar'
 import { useRouter } from 'next/navigation'
 import { useCart } from '@/hooks/useCart'
 import { Container, CartCount } from './styles'
+import { BagIcon } from '../icons/BagIcon'
 
 export default function CardController() {
   const { qtdItems } = useCart()
@@ -11,7 +11,7 @@ export default function CardController() {
   }
   return (
     <Container onClick={handleNavigateTo}>
-      <BagBar />
+      <BagIcon />
       <CartCount>{qtdItems}</CartCount>
     </Container>
   )
